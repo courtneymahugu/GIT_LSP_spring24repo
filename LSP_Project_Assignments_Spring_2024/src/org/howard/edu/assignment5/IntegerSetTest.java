@@ -31,7 +31,7 @@ public class IntegerSetTest {
 	@DisplayName("Test case for length")
 	public void testLength() {
 		testSet.add(1);
-		testSet.add(2);
+		testSet.add(2); 
 		assertEquals(2, testSet.length());
 	}
 
