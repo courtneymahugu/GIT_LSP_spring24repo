@@ -32,21 +32,21 @@ public class IntegerSetTest {
 	public void testLength() {
 		testSet.add(1);
 		testSet.add(2); 
-		assertEquals(2, testSet.length());
+		assertEquals(2, testSet.length()); // returns the length
 	}
 
 	@Test
 	@DisplayName("Test case for equals")
 	public void testEquals() {
-		IntegerSet set1 = new IntegerSet();
-		set1.add(1);
-		set1.add(2);
+		IntegerSet tempset1 = new IntegerSet();
+		tempset1.add(1);
+		tempset1.add(2);
 
-		IntegerSet set2 = new IntegerSet();
-		set2.add(1);
-		set2.add(2);
+		IntegerSet tempset2 = new IntegerSet();
+		tempset2.add(1);
+		tempset2.add(2);
 
-		assertTrue(set1.equals(set2));
+		assertTrue(tempset1.equals(tempset2));
 	}
 
 	@Test
@@ -160,19 +160,27 @@ public class IntegerSetTest {
 	}
 
 	@Test
-	@DisplayName("Test case for complement")
-	public void testComplement() {
-		IntegerSet anotherSet = new IntegerSet();
-		testSet.add(1);
-		testSet.add(2);
-		anotherSet.add(2);
-		anotherSet.add(3);
-		testSet.complement(anotherSet);
-		// Assuming complement is implemented as elements in the testSet that are not in
-		// anotherSet
-		assertTrue(testSet.contains(1) && !testSet.contains(2) && !testSet.contains(3),
-				"Set should only contain elements not in the other set after complement");
-	}
+    @DisplayName("Test case for complement")
+    public void testComplement() {
+        IntegerSet tempSet1 = new IntegerSet();
+        IntegerSet tempSet2 = new IntegerSet();
+        
+        // Adding elements to testSet
+        tempSet1.add(1);  // Elements in testSet only
+        tempSet1.add(2);  // Elements in both sets
+        
+        // Adding elements to anotherSet
+        tempSet2.add(2);  // Elements in both sets
+        tempSet2.add(3);  // Elements in anotherSet only
+        
+        // Performing the complement operation
+        tempSet1.complement(tempSet2);
+        
+        // After complement, testSet should contain elements that are in anotherSet but not in testSet
+        assertFalse(tempSet1.contains(1), "testSet should not contain 1 after complement");
+        assertFalse(tempSet1.contains(2), "testSet should not contain 2 after complement");
+        assertTrue(tempSet1.contains(3), "testSet should contain 3 after complement");
+    }
 
 	@Test
 	@DisplayName("Test case for isEmpty")
