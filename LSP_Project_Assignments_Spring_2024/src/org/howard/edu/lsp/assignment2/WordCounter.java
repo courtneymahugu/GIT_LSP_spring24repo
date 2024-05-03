@@ -16,29 +16,41 @@ public class WordCounter {
 
 		try {
 
-			Map<String, Integer> tracker = new HashMap<>(); //was going to use a HashSet but wanted value pairs
+			Map<String, Integer> tracker = new HashMap<>(); // was going to use a HashSet but wanted value pairs
 
-			List<String> lines = Files.readAllLines(Paths.get("src/org/howard/edu/lsp/assignment2/words.txt")); //takes all the lines and stores line as a value in a list
+			List<String> lines = Files.readAllLines(Paths.get("src/org/howard/edu/lsp/assignment2/words.txt")); // takes
+																												// all
+																												// the
+																												// lines
+																												// and
+																												// stores
+																												// line
+																												// as a
+																												// value
+																												// in a
+																												// list
 
 			for (String line : lines) {
 
-				String[] lineToWords = line.split("[' ]+"); // splits the line into words, separates by space AND apostrophes (to separate contractions)
+				String[] lineToWords = line.split("[' ]+"); // splits the line into words, separates by space AND
+															// apostrophes (to separate contractions)
 
 				for (String word : lineToWords) {
 
-					word = word.replaceAll("[^a-zA-Z']", ""); // Removes anything that's not in the alphabet (aka. numbers)
-					word = word.toLowerCase(); //to avoid case-sensitivity
+					word = word.replaceAll("[^a-zA-Z']", ""); // Removes anything that's not in the alphabet (aka.
+																// numbers)
+					word = word.toLowerCase(); // to avoid case-sensitivity
 
 					if (word.isEmpty() || word.length() < 4) {
 						continue;
 
-					} else if (!tracker.containsKey(word)) { //if not already counted, start counter
+					} else if (!tracker.containsKey(word)) { // if not already counted, start counter
 
 						tracker.put(word, 1);
 
-					} else { //add to count
+					} else { // add to count
 
-						int currentValue = tracker.getOrDefault(word, 0); //would set value to 0 if no value
+						int currentValue = tracker.getOrDefault(word, 0); // would set value to 0 if no value
 						tracker.put(word, currentValue + 1);
 					}
 				}
